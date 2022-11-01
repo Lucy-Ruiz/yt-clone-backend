@@ -151,6 +151,8 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=20),
 }
 
+USE_TZ = False
+
 try:
     from drf_jwt_backend.local_settings import *
 except ImportError:
