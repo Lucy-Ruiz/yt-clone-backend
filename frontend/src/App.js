@@ -9,6 +9,7 @@ import {
     Link,
 } from 'react-router-dom'
 import keys from './API_Key.json'
+import SearchBar from "./components/SearchBar/SearchBar";
 
 
 // Pages Imports
@@ -25,10 +26,16 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
 
-   useEffect(() => {
+    const[search, setSearch] = useState('');
+
+    useEffect(() => {
         console.log(keys.googleAPIKey);
         // getBitcoinData();
     }, [])
+
+
+
+
   return (
     <div>
       <Navbar />
