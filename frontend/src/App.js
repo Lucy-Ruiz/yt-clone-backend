@@ -8,6 +8,7 @@ import {
     Route,
     Link,
 } from 'react-router-dom'
+import keys from './API_Key.json'
 
 
 // Pages Imports
@@ -23,6 +24,11 @@ import Footer from "./components/Footer/Footer";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
+
+   useEffect(() => {
+        console.log(keys.googleAPIKey);
+        // getBitcoinData();
+    }, [])
   return (
     <div>
       <Navbar />
