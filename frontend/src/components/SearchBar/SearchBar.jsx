@@ -8,7 +8,7 @@ const SearchBar = (props) => {
     function handleSubmit(event) {
         event.preventDefault();
         console.log('searchTerm inside handleSubmit:', searchTerm);
-        props.getVideoResults(searchTerm);
+        props.getVideoResultsforSearchBar(searchTerm);
     }
 
     return(

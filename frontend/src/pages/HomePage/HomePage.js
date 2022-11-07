@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import key from "../../API_Key.json";
 
 import axios from "axios";
 
@@ -19,35 +20,36 @@ const HomePage = () => {
         console.log('searchTerm in getVideoResults in HomePage:', searchTerm)
         //use axios to make an api call using searchTerm
         //save the results to state
+    setSearchTerm(searchTerm)
+          
         
     }
-    useEffect(() => {
-        const resultsFromSearch = async () => {
-            try {
-                let response = await axios.get('http://127.0.0.1:8000', {
-                    headers: {
-                        Authorization: 'Bearer ' + token,
-                    },
-                });
-                setResultsFromSearch(response.data);
-            } catch (error) {
-                console.log(error.response.data);
-            }
-        };
-        resultsFromSearch();
-    }, [token]);
+    // useEffect(() => {
+    //     const resultsFromSearch = async () => {
+    //         try {
+    //             let response = await axios.get('http://127.0.0.1:8000', {
+    //                 headers: {
+    //                     Authorization: 'Bearer ' + token,
+    //                 },
+    //             });
+    //             setResultsFromSearch(response.data);
+    //         } catch (error) {
+    //             console.log(error.response.data);
+    //         }
+    //     };
+    //     resultsFromSearch();
+    // }, [token]);
 
     useEffect(() => {
         const setResultsFromSearch = async() => {
             try {
-                let response = await axios.get(`https://googleapis.com/youtube/v3/search?q=${searchTerm}}%20decks&key=AIzaSyAMeRwS9vEqqZdENkm6bj2gUvKqMqtkaLI`)
+                let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
                 console.log(response);
                 setResultsFromSearch(response.data.items)
             } catch (error){
                 console.log(error.response.data)
             }
         }
-        setResultsFromSearch();
     }, [])
 
    
@@ -76,7 +78,7 @@ const HomePage = () => {
             {car.year} {car.model} {car.make}
           </p>
         ))} */}
-        <SearchBar getVideoResults={getVideoResults}/>
+        <SearchBar getVideoResultsforSearchBar={getVideoResults}/>
     </div>
   );
 };
