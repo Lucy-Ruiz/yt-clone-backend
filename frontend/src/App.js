@@ -11,11 +11,11 @@ import {
 import keys from './API_Key.json'
 import SearchBar from "./components/SearchBar/SearchBar";
 
-
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import VideoDisplay from "./pages/VideoDisplay/VideoDisplay"
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -50,6 +50,7 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/video" element={<VideoDisplay />}/> 
       </Routes>
       <Footer />
     </div>

@@ -16,11 +16,20 @@ const HomePage = () => {
   const[searchTerm, setSearchTerm] = useState('lower decks ');
 
 
-  function getVideoResults(searchTerm) {
+  async function getVideoResults(searchTerm) {
         console.log('searchTerm in getVideoResults in HomePage:', searchTerm)
         //use axios to make an api call using searchTerm
         //save the results to state
     setSearchTerm(searchTerm)
+    try {
+        console.log('calling yt API')
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
+        console.log(response);
+        setResultsFromSearch(response.data)
+    } catch (error){
+        console.log(error.response.data)
+    }
+   
           
         
     }
@@ -40,17 +49,19 @@ const HomePage = () => {
     //     resultsFromSearch();
     // }, [token]);
 
-    useEffect(() => {
-        const setResultsFromSearch = async() => {
-            try {
-                let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
-                console.log(response);
-                setResultsFromSearch(response.data.items)
-            } catch (error){
-                console.log(error.response.data)
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    //     const setResultsFromSearch = async() => {
+    //         try {
+    //             console.log('calling yt API')
+    //             let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
+    //             console.log(response);
+    //             setResultsFromSearch(response.data)
+    //         } catch (error){
+    //             console.log(error.response.data)
+    //         }
+    //     }
+    //     setResultsFromSearch()
+    // }, [])
 
    
 
