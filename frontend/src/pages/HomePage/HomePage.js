@@ -5,6 +5,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import key from "../../API_Key.json";
 
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -14,22 +15,22 @@ const HomePage = () => {
   const [cars, setCars] = useState([]);
   const [resultsFromSearch, setResultsFromSearch] = useState([])
   const[searchTerm, setSearchTerm] = useState('lower decks ');
+  let navigate = useNavigate();
 
 
   async function getVideoResults(searchTerm) {
         console.log('searchTerm in getVideoResults in HomePage:', searchTerm)
-        //use axios to make an api call using searchTerm
-        //save the results to state
     setSearchTerm(searchTerm)
     try {
         console.log('calling yt API')
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
-        console.log(response);
-        setResultsFromSearch(response.data)
+        console.log('response.data.items in getVideoResults', response.data.items);
+        //save video id of zero index to a new state variable
+        setResultsFromSearch(response.data.items)
     } catch (error){
         console.log(error.response.data)
     }
-   
+    navigate('/video')
           
         
     }
