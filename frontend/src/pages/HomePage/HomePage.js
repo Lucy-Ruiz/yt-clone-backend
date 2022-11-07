@@ -26,11 +26,11 @@ const HomePage = () => {
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${key.googleAPIKey}`)
         console.log('response.data.items in getVideoResults', response.data.items);
         //save video id of zero index to a new state variable
+        navigate(`/video/${response.data.items[0].id.videoId}`)
         setResultsFromSearch(response.data.items)
     } catch (error){
         console.log(error.response.data)
     }
-    navigate('/video')
           
         
     }
