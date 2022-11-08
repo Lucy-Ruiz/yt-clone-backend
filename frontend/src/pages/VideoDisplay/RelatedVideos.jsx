@@ -4,7 +4,23 @@ const RelatedVideos = (props) => {
 
 
     return(
-        <h1> Test relatedvideos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Video Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.videos.map((videoId, index) => {
+                    return(
+                        <tr>
+                            <td>{videoId}</td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+        </table>
     )
 }
 
