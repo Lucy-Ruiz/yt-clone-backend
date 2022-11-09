@@ -8,7 +8,7 @@ import CreateCommentForm from '../../components/CreateCommentForm/CreateCommentF
 const VideoDisplay = () => {
     // const [selectedVideoId, setSelectedVideoId] = useState('');
     const [relatedVideos, setRelatedVideos] = useState ([]);
-    const {selectedVideo} = useParams()
+    const {selectedVideo, user} = useParams()
     // setSelectedVideoId(selectedVideo)
     useEffect(() => {
         getRelatedVideos();
@@ -25,6 +25,7 @@ const VideoDisplay = () => {
 // getRelatedVideos()
     return (
     <div>
+        <h1>Video Page for user {user.username}!</h1>
         <iframe id="ytplayer" type="text/html" width="640" height="360"
 
   src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&origin=http://example.com`}
